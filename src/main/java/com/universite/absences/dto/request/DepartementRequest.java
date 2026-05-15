@@ -7,4 +7,6 @@ import lombok.Data;
 public class DepartementRequest {
     @NotBlank
     private String nom;
+    private String description;
+    private String chefDepartement;
 }

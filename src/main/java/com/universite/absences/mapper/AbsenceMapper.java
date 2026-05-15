@@ -14,8 +14,10 @@ public interface AbsenceMapper {
     @Mapping(source = "etudiant.id", target = "etudiantId")
     @Mapping(source = "etudiant.nom", target = "etudiantNom")
     @Mapping(source = "etudiant.prenom", target = "etudiantPrenom")
+    @Mapping(source = "etudiant.cne", target = "etudiantCne")
     @Mapping(source = "seance.id", target = "seanceId")
     @Mapping(source = "seance.module.nom", target = "moduleNom")
+    @Mapping(source = "etudiant.filiere.nom", target = "filiereNom")
     @Mapping(source = "seance.dateDebut", target = "dateSeance")
     AbsenceResponse toResponse(Absence entity);
 }

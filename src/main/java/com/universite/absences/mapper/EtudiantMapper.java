@@ -9,6 +9,10 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface EtudiantMapper {
+    @Mapping(target = "filiere.id", source = "filiereId")
     Etudiant toEntity(EtudiantRequest request);
+
+    @Mapping(target = "filiereId", source = "filiere.id")
+    @Mapping(target = "filiereNom", source = "filiere.nom")
     EtudiantResponse toResponse(Etudiant entity);
 }

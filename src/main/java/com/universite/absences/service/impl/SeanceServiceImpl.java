@@ -6,8 +6,13 @@ import com.universite.absences.entity.Module;
 import com.universite.absences.entity.Professeur;
 import com.universite.absences.entity.Salle;
 import com.universite.absences.entity.Seance;
+import com.universite.absences.entity.Absence;
+import com.universite.absences.entity.Etudiant;
+import com.universite.absences.entity.enums.StatutAbsence;
 import com.universite.absences.exception.EntityNotFoundException;
 import com.universite.absences.mapper.SeanceMapper;
+import com.universite.absences.repository.AbsenceRepository;
+import com.universite.absences.repository.EtudiantRepository;
 import com.universite.absences.repository.ModuleRepository;
 import com.universite.absences.repository.SalleRepository;
 import com.universite.absences.repository.SeanceRepository;
@@ -17,6 +22,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +34,8 @@ public class SeanceServiceImpl implements SeanceService {
     private final ModuleRepository moduleRepository;
     private final SalleRepository salleRepository;
     private final UserRepository userRepository;
+    private final EtudiantRepository etudiantRepository;
+    private final AbsenceRepository absenceRepository;
     private final SeanceMapper mapper;
 
     @Override
@@ -40,16 +50,29 @@ public class SeanceServiceImpl implements SeanceService {
     }
 
     @Override
+    @Transactional
     public SeanceResponse create(SeanceRequest request) {
         Seance entity = mapper.toEntity(request);
-        entity.setModule(moduleRepository.findById(request.getModuleId())
-                .orElseThrow(() -> new EntityNotFoundException("Module introuvable")));
+        Module module = moduleRepository.findById(request.getModuleId())
+                .orElseThrow(() -> new EntityNotFoundException("Module introuvable"));
+        entity.setModule(module);
         entity.setSalle(salleRepository.findById(request.getSalleId())
                 .orElseThrow(() -> new EntityNotFoundException("Salle introuvable")));
         entity.setProfesseur((Professeur) userRepository.findById(request.getProfesseurId())
                 .orElseThrow(() -> new EntityNotFoundException("Professeur introuvable")));
         
-        return mapper.toResponse(repository.save(entity));
+        Seance savedSeance = repository.save(entity);
+
+        List<Etudiant> etudiants = etudiantRepository.findByFiliereId(module.getFiliere().getId());
+        for (Etudiant etudiant : etudiants) {
+            Absence absence = new Absence();
+            absence.setEtudiant(etudiant);
+            absence.setSeance(savedSeance);
+            absence.setStatut(StatutAbsence.ABSENT);
+            absenceRepository.save(absence);
+        }
+
+        return mapper.toResponse(savedSeance);
     }
 
     @Override

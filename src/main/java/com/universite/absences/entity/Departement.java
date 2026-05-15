@@ -18,6 +18,12 @@ public class Departement {
     @Column(nullable = false, unique = true)
     private String nom;
 
+    @Column
+    private String description;
+
+    @Column(name = "chef_departement")
+    private String chefDepartement;
+
     @OneToMany(mappedBy = "departement")
     private List<Filiere> filieres;
 

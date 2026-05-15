@@ -9,4 +9,6 @@ public class EtudiantResponse {
     private String prenom;
     private String email;
     private String cne;
+    private Long filiereId;
+    private String filiereNom;
 }

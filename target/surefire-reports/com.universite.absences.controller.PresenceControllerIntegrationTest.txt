@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.universite.absences.controller.PresenceControllerIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.064 s <<< FAILURE! -- in com.universite.absences.controller.PresenceControllerIntegrationTest
+com.universite.absences.controller.PresenceControllerIntegrationTest.shouldRegisterPresenceIA -- Time elapsed: 0.053 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.lang.Integer.longValue()" because "deptId" is null
+	at com.universite.absences.controller.PresenceControllerIntegrationTest.shouldRegisterPresenceIA(PresenceControllerIntegrationTest.java:25)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

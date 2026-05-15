@@ -6,4 +6,6 @@ import lombok.Data;
 public class DepartementResponse {
     private Long id;
     private String nom;
+    private String description;
+    private String chefDepartement;
 }

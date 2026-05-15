@@ -1,1 +1,12 @@
+com/universite/absences/controller/PresenceControllerIntegrationTest.class
+com/universite/absences/BaseIntegrationTest.class
+com/universite/absences/controller/EtudiantControllerIntegrationTest.class
+com/universite/absences/controller/DepartementControllerIntegrationTest.class
+com/universite/absences/controller/ModuleControllerIntegrationTest.class
+com/universite/absences/controller/ProfesseurControllerIntegrationTest.class
+com/universite/absences/controller/SalleControllerIntegrationTest.class
+com/universite/absences/controller/AbsenceControllerIntegrationTest.class
+com/universite/absences/controller/AuthControllerIntegrationTest.class
+com/universite/absences/controller/FiliereControllerIntegrationTest.class
 com/universite/absences/service/impl/PresenceServiceImplTest.class
+com/universite/absences/controller/SeanceControllerIntegrationTest.class

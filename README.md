@@ -20,7 +20,7 @@ Plateforme de gestion des absences universitaires intégrant un système IA (YOL
 ```
 
 3. Swagger UI :
-   - http://localhost:8080/swagger-ui.html
+   - http://localhost:8086/swagger-ui.html
 
 ## Architecture du Backend
 

@@ -35,6 +35,21 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.UNAUTHORIZED, "Non autorisé", ex.getMessage(), request.getRequestURI());
     }
 
+    @ExceptionHandler(AiServiceException.class)
+    public ResponseEntity<ErrorResponse> handleAiService(AiServiceException ex, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_GATEWAY, "Service IA indisponible", ex.getMessage(), request.getRequestURI());
+    }
+
+    @ExceptionHandler(FaceNotRecognizedException.class)
+    public ResponseEntity<ErrorResponse> handleFaceNotRecognized(FaceNotRecognizedException ex, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, "Visage non reconnu", ex.getMessage(), request.getRequestURI());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException ex, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, "Requête invalide", ex.getMessage(), request.getRequestURI());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
         List<String> details = ex.getBindingResult()

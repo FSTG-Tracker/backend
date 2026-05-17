@@ -1,8 +1,12 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/AbsencesApplication.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/client/FaceRecognitionClient.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/config/AiServiceProperties.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/config/DataSeeder.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/config/FaceRecognitionWebClientConfig.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/config/OpenApiConfig.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/config/SecurityConfig.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/AbsenceController.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/AttendanceController.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/AuthController.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/DepartementController.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/EtudiantController.java
@@ -12,6 +16,9 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/ProfesseurController.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/SalleController.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/controller/SeanceController.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/external/FaceDetectionDto.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/external/FaceRecognizeBatchResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/external/FaceRecognizeResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/request/AbsenceRequest.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/request/AuthRequest.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/request/DepartementRequest.java
@@ -23,10 +30,10 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/request/SalleRequest.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/request/SeanceRequest.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AbsenceResponse.java
-/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AiDetectionResult.java
-/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AiEnrollResponse.java
-/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AiRecognitionResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AttendanceScanResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/AuthResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/ClassroomScanResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/ClassroomScanResultItem.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/DepartementResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/EtudiantResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/FiliereResponse.java
@@ -34,7 +41,9 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/PresenceIAResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/ProfesseurResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/SalleResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/SeanceAttendanceStatusResponse.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/SeanceResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/dto/response/StudentAttendanceStatusItem.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/Absence.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/Admin.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/Departement.java
@@ -49,9 +58,11 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/enums/SourcePresence.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/enums/StatutAbsence.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/entity/enums/TypeSalle.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/AiServiceException.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/DuplicateAbsenceException.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/EntityNotFoundException.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/ErrorResponse.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/FaceNotRecognizedException.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/GlobalExceptionHandler.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/InvalidCredentialsException.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/exception/SalleCapacityExceededException.java
@@ -79,6 +90,7 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/security/UserDetailsServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/AbsenceServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/AiIntegrationServiceImpl.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/AttendanceServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/AuthServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/DepartementServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/EtudiantServiceImpl.java
@@ -90,6 +102,7 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/impl/SeanceServiceImpl.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/AbsenceService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/AiIntegrationService.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/AttendanceService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/AuthService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/DepartementService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/EtudiantService.java
@@ -99,3 +112,4 @@
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/ProfesseurService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/SalleService.java
 /home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/service/interfaces/SeanceService.java
+/home/simo/Documents/FSTracker1/backend/src/main/java/com/universite/absences/util/StudentNameMatcher.java

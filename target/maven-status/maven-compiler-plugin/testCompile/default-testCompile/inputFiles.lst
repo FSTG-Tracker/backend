@@ -9,4 +9,6 @@
 /home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/controller/ProfesseurControllerIntegrationTest.java
 /home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/controller/SalleControllerIntegrationTest.java
 /home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/controller/SeanceControllerIntegrationTest.java
+/home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/service/impl/AttendanceServiceClassroomTest.java
+/home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/service/impl/AttendanceServiceImplTest.java
 /home/simo/Documents/FSTracker1/backend/src/test/java/com/universite/absences/service/impl/PresenceServiceImplTest.java

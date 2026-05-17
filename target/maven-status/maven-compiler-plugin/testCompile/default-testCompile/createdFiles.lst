@@ -1,6 +1,8 @@
+com/universite/absences/service/impl/AttendanceServiceClassroomTest.class
 com/universite/absences/controller/PresenceControllerIntegrationTest.class
-com/universite/absences/BaseIntegrationTest.class
+com/universite/absences/service/impl/AttendanceServiceImplTest.class
 com/universite/absences/controller/EtudiantControllerIntegrationTest.class
+com/universite/absences/BaseIntegrationTest.class
 com/universite/absences/controller/DepartementControllerIntegrationTest.class
 com/universite/absences/controller/ModuleControllerIntegrationTest.class
 com/universite/absences/controller/ProfesseurControllerIntegrationTest.class

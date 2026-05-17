@@ -2,6 +2,7 @@ package com.universite.absences.controller;
 
 import com.universite.absences.dto.request.EtudiantRequest;
 import com.universite.absences.dto.response.EtudiantResponse;
+import com.universite.absences.exception.AiServiceException;
 import com.universite.absences.service.interfaces.EtudiantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping("/api/etudiants")
@@ -36,12 +39,14 @@ public class EtudiantController {
         return ResponseEntity.ok(etudiantService.getEtudiantById(id));
     }
 
-    @PostMapping(value = "/{id}/image", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<com.universite.absences.dto.response.AiEnrollResponse> enrollEtudiantFace(
+    public ResponseEntity<Void> enrollEtudiantFace(
             @PathVariable Long id,
-            @RequestParam("image") org.springframework.web.multipart.MultipartFile image,
-            @org.springframework.beans.factory.annotation.Autowired com.universite.absences.service.interfaces.AiIntegrationService aiService) {
-        return ResponseEntity.ok(aiService.enrollStudentFace(id, image));
+            @RequestParam("image") MultipartFile image
+    ) {
+        throw new AiServiceException(
+                "L'enrôlement facial se fait via Face-Recognition/register_students.py (microservice indépendant). Étudiant id=" + id);
     }
+
 }
